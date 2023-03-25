@@ -1,5 +1,7 @@
-package deque;
+package deque.testing;
 
+import deque.implementation.ArrayDeque;
+import deque.implementation.LinkedListDeque;
 import org.junit.Test;
 
 import java.util.Random;

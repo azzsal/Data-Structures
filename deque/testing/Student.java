@@ -1,4 +1,4 @@
-package deque;
+package deque.testing;
 
 import java.util.Comparator;
 

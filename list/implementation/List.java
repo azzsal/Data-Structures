@@ -1,4 +1,4 @@
-package list;
+package list.implementation;
 
 public interface List<T> {
 
@@ -14,9 +14,9 @@ public interface List<T> {
 
     int size();
 
-    void removeLast();
+    T removeLast();
 
-    void removeFirst();
+    T removeFirst();
 
 
 
