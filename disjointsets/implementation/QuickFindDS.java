@@ -1,7 +1,7 @@
 package disjointsets.implementation;
 
 /**
- * QuickFind is a concrete implementation of the QuickUnion data structure.
+ * QuickFind is a concrete implementation of the QuickUnion ADT.
  * From its name, it is efficient in find (isConnected) operation,
  * but inefficient in the union (connect) operation.
  * It models the disjoint sets with id's, where each set has a unique id.
@@ -54,7 +54,7 @@ public class QuickFindDS implements DisjointSets {
     }
 
     /**
-     * Returns true if the two elements are in the same set<br>
+     * Returns true if and only if the two elements are in the same set<br>
      * Time complexity: &Theta;(<em>1</em>)
      * @param p the first item
      * @param q the second item
