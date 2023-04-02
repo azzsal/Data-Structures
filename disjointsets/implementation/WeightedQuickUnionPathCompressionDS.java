@@ -1,25 +1,19 @@
 package disjointsets.implementation;
 
+
 /**
- * Weighted QuickUnion is the same as QuickUnion with an added optimization,
- * that guarantees the smaller (in size) tree is connected to the larger tree.
- * this is achieved by keeping track of an additional size array, so before
- * making a connect operation we check the sizes of the trees rooted at
- * p's root and q's root, and connect the smaller tree to the larger one.
- * By doing so we guarantee the height of the tree will be at most logN,
- * thus the find operation will have to climb logN at the worst case.
- * (there is a formal proof by strong induction for that,
- * but I think the following proof sketch is enough to convince you, well I hope:))
- *
- * (Proof sketch: Say we have an element x in a Tree T1.
- *  The depth of x increases by 1 only when T1 is placed below another tree T2.
- *  When that happens, the size of the resulting tree will be at least double the size of T1 because
- *  size(T2) >= size(T1). The tree with x can double at most logN times until we've reached a total of N items.
- *  So we can double up to logN times and each time, our tree adds a level → maximum logN levels.)
+ * WeightedQuickUnionPathCompressionDS is the same as WeightedQuickUnion with an
+ * added optimization. The idea is when calling find on a given vertex
+ * we set all the nodes on the path from root to vertex to be direct
+ * children of the root, thus after calling connect and isConnected enough
+ * times, all the elements will be direct children of the root.
+ * The analysis is quite hard, but for all practical purposes you can
+ * assume that the find operation will take almost amortized constant time
+ * in the long term.
  *
  * @author aziz
  */
-public class WeightedQuickUnionDS implements DisjointSets{
+public class WeightedQuickUnionPathCompressionDS implements DisjointSets{
 
     /** Each element in this array represents the parent of the element at that index */
     private int parent[];
@@ -29,10 +23,10 @@ public class WeightedQuickUnionDS implements DisjointSets{
     /**
      * Initializes a disjoint set data structure with n elements
      * where each element is in its own set.<br>
-     * Time complexity: &The    ta;(<em>n</em>)
+     * Time complexity: &Theta;(<em>n</em>)
      * @param n the number of elements
      */
-    public WeightedQuickUnionDS(int n) {
+    public WeightedQuickUnionPathCompressionDS(int n) {
         parent = new int[n];
         size = new int[n];
         for (int i = 0; i < n; i++) {
@@ -44,10 +38,8 @@ public class WeightedQuickUnionDS implements DisjointSets{
     /**
      * Merges the set containing the element {@code p} with the set
      * containing the element {@code q}.<br>
-     * (sets the smaller tree root to be a child of
-     * the larger tree root, and then increments the larger
-     * tree size by the smaller tree size).<br>
-     * Time complexity: &Theta;(log<em>n</em>) in the worst case.
+     * Time complexity: O(α(<em>n</em>)).
+     * where α is the inverse Ackermann function.
      * @param p the first element
      * @param q the second element
      */
@@ -58,31 +50,37 @@ public class WeightedQuickUnionDS implements DisjointSets{
         if(proot == qroot) return; // This is not a constant time optimization as in QuickUnion!
 
         if (size[proot] < size[qroot]) {
-           parent[proot] = qroot;
-           size[qroot] += size[proot];
+            parent[proot] = qroot;
+            size[qroot] += size[proot];
         } else {
             parent[qroot] = proot;
             size[proot] += size[qroot];
         }
-
     }
 
     /**
-     * Returns the root of the component (which is canonical element of the set)<br/>
-     * Time complexity: &Theta;(log<em>n</em>) in the worst case.
+     * Finds the root of the vertex p and
+     * then sets the parent of all the elements
+     * on the path from p to root to be the root of p
+     * and then returns the root.<br/>
+     * Time complexity: O(α(<em>n</em>)).
+     * where α is the inverse Ackermann function.
      * @param p an element
      * @return the root of the component
      */
     private int find(int p) {
         if(p == parent[p])
             return p;
-        return find(parent[p]);
+        int proot = find(parent[p]);
+        parent[p] = proot;
+        return proot;
     }
 
     /**
      * Returns true if and only if the two elements are in the same set
      * (in the same tree in this specific implementation)<br/>
-     * Time complexity: &Theta;(log<em>n</em>) in the worst case.
+     * Time complexity: O(α(<em>n</em>)).
+     * where α is the inverse Ackermann function.
      * @param p the first item
      * @param q the second item
      * @return {@code ture} if {@code p} and {@code q} are in the same set;
