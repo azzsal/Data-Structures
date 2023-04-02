@@ -6,6 +6,7 @@ package disjointsets.implementation;
  *  a fixed number of elements partitioned into a number of disjoint sets.
  *  It has two main functions, connect (aka. union); connects two elements together,
  *  and isConnected (aka. find); checks whether two elements are connected.
+ *
  * @author aziz
  */
 public interface DisjointSets {

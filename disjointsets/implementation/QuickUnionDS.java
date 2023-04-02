@@ -11,6 +11,7 @@ package disjointsets.implementation;
  * (thus called quick union; the union is cheap, but find may be expensive)
  * To check whether two elements are connected, we first find their roots
  * and if they are the same then they are connected, otherwise not connected.
+ *
  * @author aziz
  */
 public class QuickUnionDS implements DisjointSets{
@@ -25,6 +26,7 @@ public class QuickUnionDS implements DisjointSets{
      * @param n the number of elements
      */
     public QuickUnionDS(int n) {
+        parent = new int[n];
         for (int i = 0; i < n; i++) {
             parent[i] = i;
         }
@@ -34,7 +36,7 @@ public class QuickUnionDS implements DisjointSets{
      * Merges the set containing the element {@code p} with the set
      * containing the element {@code q}<br>
      * (sets the parent of the first's element root to the
-     * root of the second element in this specific implementation)
+     * root of the second element in this specific implementation)<br>
      * Time complexity: &Theta;(<em>n</em>) in the worst case.
      * @param p the first element
      * @param q the second element
@@ -43,7 +45,7 @@ public class QuickUnionDS implements DisjointSets{
     public void connect(int p, int q) {
         int proot = find(p);
         int qroot = find(q);
-        if(proot == qroot) return;
+        if(proot == qroot) return; // This is a constant time optimization
         parent[proot] = qroot;
     }
 

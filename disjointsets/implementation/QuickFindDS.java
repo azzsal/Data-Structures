@@ -11,6 +11,7 @@ package disjointsets.implementation;
  * element set (by setting its id to the second element set's id).
  * When a find (isConnected) operation is performed we simply check if
  * the two elements set's' are the same in constant time.
+ *
  * @author aziz
  */
 public class QuickFindDS implements DisjointSets {
