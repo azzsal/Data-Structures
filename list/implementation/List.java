@@ -18,6 +18,9 @@ public interface List<T> {
 
     T removeFirst();
 
+    default boolean isEmpty() {
+        return size() == 0;
+    }
 
 
 }

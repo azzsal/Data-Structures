@@ -1,6 +1,6 @@
 package list.implementation;
 
-/** Array based implementation of a List data structure.
+/** Array based implementation of the List ADT.
  * @param <T>
  * @author aziz
  */
@@ -112,7 +112,7 @@ public class AList<T> implements List<T> {
 
     /**
      * Deletes item from front of the list and
-     * returns deleted item if present, else returns null.
+     * returns the deleted item if present, else returns null.
      * Time complexity: linear time O(n)
      * @return the deleted item if present, else null
      */
