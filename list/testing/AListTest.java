@@ -1,6 +1,7 @@
 package list.testing;
 
 import list.implementation.AList;
+import list.implementation.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
@@ -11,7 +12,7 @@ public class AListTest {
     public void randomizedTest() {
 
         Random r = new Random();
-        AList<Integer> aList = new AList<>();
+        List<Integer> aList = new AList<>();
         int N = (int) 1e6;
         for(int i = 0; i < N; i++) {
             int operation = r.nextInt(10);
