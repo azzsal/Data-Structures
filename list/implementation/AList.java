@@ -12,7 +12,7 @@ public class AList<T> implements List<T> {
     public AList() {
         // You cannot create generic arrays,
         // because of the funny way java works (has to do with type erasure)
-        items = (T[]) new Object[100];
+        items = (T[]) new Object[8];
         size = 0;
     }
 
