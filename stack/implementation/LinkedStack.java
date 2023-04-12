@@ -1,22 +1,22 @@
 package stack.implementation;
 
-import list.implementation.CLList;
 import list.implementation.List;
+import list.implementation.SLList;
 
 /**
  * The Stack represents a last-in-first-out stack of generic items.
  * It supports push, pop and top operations.
- * this implementation is based on circular linked lists,
+ * this implementation is based on singly linked lists,
  * using composition and delegation.
  * @param <T>
  * @author aziz
  */
 public class LinkedStack<T> implements Stack<T>{
 
-    private List<T> cLinkedList;
+    private List<T> singlyLinkedList;
 
     public LinkedStack() {
-        cLinkedList = new CLList<>();
+        singlyLinkedList = new SLList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class LinkedStack<T> implements Stack<T>{
      */
     @Override
     public void push(T item) {
-        cLinkedList.addLast(item);
+        singlyLinkedList.addFirst(item);
     }
 
     /**
@@ -37,7 +37,7 @@ public class LinkedStack<T> implements Stack<T>{
      */
     @Override
     public T pop() {
-        return cLinkedList.removeLast();
+        return singlyLinkedList.removeFirst();
     }
 
     /**
@@ -48,7 +48,7 @@ public class LinkedStack<T> implements Stack<T>{
      */
     @Override
     public T top() {
-        return cLinkedList.getLast();
+        return singlyLinkedList.getFirst();
     }
 
     /**
@@ -56,6 +56,6 @@ public class LinkedStack<T> implements Stack<T>{
      */
     @Override
     public int size() {
-        return cLinkedList.size();
+        return singlyLinkedList.size();
     }
 }
