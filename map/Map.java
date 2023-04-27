@@ -1,4 +1,4 @@
-package map.implementation;
+package map;
 
 import java.util.Set;
 

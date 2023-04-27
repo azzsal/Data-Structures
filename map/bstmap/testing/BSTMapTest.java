@@ -1,6 +1,6 @@
-package map.testing;
+package map.bstmap.testing;
 
-import map.implementation.BSTMap;
+import map.bstmap.implementation.BSTMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

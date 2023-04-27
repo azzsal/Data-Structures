@@ -1,5 +1,7 @@
-package map.implementation;
+package map.bstmap.implementation;
 
+
+import map.Map;
 
 import java.util.*;
 import java.util.function.Consumer;
